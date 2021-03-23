@@ -4,9 +4,8 @@ on:
     branches:
       - develop
 env:
-  AZURE_WEBAPP_NAME: github-actions-spa
   AZURE_WEBAPP_PACKAGE_PATH: './dist/rent-anything'
-  NODE_VERSION: '10.x'
+  NODE_VERSION: '14.x'
 
 jobs:
   build-and-deploy:
@@ -25,6 +24,5 @@ jobs:
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v1
       with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_bc99ae8af54f45069e5e9ef61665fd39 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
