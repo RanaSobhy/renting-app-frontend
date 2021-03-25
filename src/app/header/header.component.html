@@ -1,26 +1,24 @@
-<header class="p-3 mb-3 border-bottom">
-  <div class="container-fluid">
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="/" class="mb-2 mb-lg-0 text-decoration-none">
-        <img
-          class="bi me-2"
-          width="40"
-          height="40"
-          src="../../assets/Images/for-rent.png"
-        />
-      </a>
-
-      <div class="d-flex justify-content-between">
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control" placeholder="Search..." />
-        </form>
-
-        <div class="text-end">
-            <button type="button" class="btn btn-outline-dark me-2">Login</button>
-            &nbsp;&nbsp;
-            <button type="button" class="btn btn-dark">Sign-up</button>
-        </div>
-      </div>
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['']"
+    ><img
+      class="bi me-2"
+      width="40"
+      height="40"
+      src="../../assets/Images/for-rent.png"
+  /></a>
+  <form class="form-inline">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
+    <div *ngIf="!isAuthenticated; else showProfile">
+      <button type="button" class="btn btn-outline-dark mr-sm-2" [routerLink]="['auth']">Login</button>
+      <button type="button" class="btn btn-dark" [routerLink]="['auth']">Sign-up</button>
     </div>
-  </div>
-</header>
+    <ng-template #showProfile>
+      Hello! {{currentUser != null ? currentUser.firstName : ""}}
+    </ng-template>
+  </form>
+</nav>

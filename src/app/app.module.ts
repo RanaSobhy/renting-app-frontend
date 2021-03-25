@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider} from 'angularx-social-login';
 import { HeaderComponent } from './header/header.component';
 import { AuthComponent } from './auth/auth.component';
+import {AuthService} from './auth/auth.service'
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { AuthComponent } from './auth/auth.component';
     AuthComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRoutingModule,
     FormsModule,
     SocialLoginModule
@@ -23,7 +24,7 @@ import { AuthComponent } from './auth/auth.component';
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
-        autoLogin: false,
+        autoLogin: true,
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
@@ -33,7 +34,8 @@ import { AuthComponent } from './auth/auth.component';
           }
         ]
       } as SocialAuthServiceConfig,
-    }
+    },
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

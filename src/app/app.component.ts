@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import {
+  SocialAuthService,
+  GoogleLoginProvider,
+  SocialUser,
+} from 'angularx-social-login';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,15 +12,16 @@ import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-soc
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'renting-app-frontend';
+  user: SocialUser | null = null;
+  loggedIn: boolean = false;
 
-  constructor(private authService: SocialAuthService) {}
-  ngOnInit() {}
+  constructor(private socialAuthService: SocialAuthService, private authService: AuthService) {}
 
-  signIn() {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    this.authService.authState.subscribe((user) => {
-      console.log(user);
+  ngOnInit() {
+    this.socialAuthService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = user != null;
+      this.authService.setUser(this.user);
     });
   }
 }
