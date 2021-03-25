@@ -1,0 +1,24 @@
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['']"
+    ><img
+      class="bi me-2"
+      width="40"
+      height="40"
+      src="../../assets/Images/for-rent.png"
+  /></a>
+  <form class="form-inline">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
+    <div *ngIf="!isAuthenticated; else showProfile">
+      <button type="button" class="btn btn-outline-dark mr-sm-2" [routerLink]="['auth']">Login</button>
+      <button type="button" class="btn btn-dark" [routerLink]="['auth']">Sign-up</button>
+    </div>
+    <ng-template #showProfile>
+      Hello! {{currentUser != null ? currentUser.firstName : ""}}
+    </ng-template>
+  </form>
+</nav>
