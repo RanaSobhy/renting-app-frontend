@@ -18,7 +18,7 @@ export class AuthService {
 
   googleLogin(data: SocialUser) :Observable <User> {
     return this.http.post<User>(`${environment.backendUrl}/api/auth/login/google`, {
-      firsName: data.firstName,
+      firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
       picture: data.photoUrl,
