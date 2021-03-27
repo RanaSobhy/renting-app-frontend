@@ -12,9 +12,10 @@ import { HeaderComponent } from './Components/header/header.component';
 import { AuthComponent } from './Components/auth/auth.component';
 import { AuthService } from './Services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductListComponent } from './Components/product-list/product-list.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, AuthComponent],
+  declarations: [AppComponent, HeaderComponent, AuthComponent, ProductListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
