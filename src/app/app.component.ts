@@ -4,7 +4,9 @@ import {
   GoogleLoginProvider,
   SocialUser,
 } from 'angularx-social-login';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './Services/auth.service';
+import { SignedInUser } from './Models/signedInUser.model';
+import { User } from './Models/user.model.ts';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +23,9 @@ export class AppComponent {
     this.socialAuthService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = user != null;
-      this.authService.setUser(this.user);
+      this.authService.googleLogin(user).subscribe((res: User) => {
+        this.authService.setUser(new SignedInUser( res, user));
+      });
     });
   }
 }
