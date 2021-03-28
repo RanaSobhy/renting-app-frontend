@@ -3,7 +3,7 @@ export class Product {
   public ownerId: string;
   public name: string;
   public description: string;
-  public price: string;
+  public price: number;
   public isRented: Boolean;
   public rentedBy: string;
   public condition: string;
@@ -16,7 +16,7 @@ export class Product {
     ownerId: string,
     name: string,
     description: string,
-    price: string,
+    price: number,
     isRented: Boolean,
     rentedBy: string,
     condition: string,

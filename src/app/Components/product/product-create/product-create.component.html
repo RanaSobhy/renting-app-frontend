@@ -1,0 +1,82 @@
+<form class="border border-light p-5 submit-form">
+  <p class="h4 mb-4">Add Product</p>
+
+  
+  
+  <img src="{{ url }}" class="img-thumbnail"/>
+  <div class="form-group">
+    
+    <input
+      type="file"
+      class="form-control-file"
+      id="photo"
+      name="photo"
+      [(ngModel)]="product.photo"
+      (change)="onSelectFile($event)"
+      accept="image/x-png,image/jpeg"
+      style="display: none"
+      #fileInput
+    />
+    <button class="btn btn-outline-dark mt-3" (click)="fileInput.click()">Upload photo</button>
+  </div>
+
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      name="name"
+      [(ngModel)]="product.name"
+      placeholder="Name"
+    />
+  </div>
+
+  <div class="form-group">
+    <textarea
+      class="form-control"
+      id="description"
+      name="description"
+      rows="3"
+      [(ngModel)]="product.description"
+      placeholder="Description"
+    ></textarea>
+  </div>
+
+  <div class="form-group">
+    <input
+      type="number"
+      class="form-control"
+      id="price"
+      name="price"
+      [(ngModel)]="product.price"
+      placeholder="Price"
+      min="0"
+    />
+  </div>
+
+  <div class="form-group">
+    <select
+      class="form-control"
+      id="condition"
+      [(ngModel)]="product.condition"
+      name="condition"
+    >
+      <option>New</option>
+      <option>Used</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      id="brand"
+      placeholder="Brand"
+      name="brand"
+      [(ngModel)]="product.brand"
+      required
+    />
+  </div>
+
+  <button class="btn btn-dark" type="submit" (click)="addProduct()">Add</button>
+</form>
