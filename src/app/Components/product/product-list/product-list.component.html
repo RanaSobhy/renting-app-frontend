@@ -1,3 +1,11 @@
+<button
+  *ngIf="isAuthenticated"
+  type="button"
+  class="btn btn-dark float-right"
+  [routerLink]="['add']"
+>
+  + Add Product
+</button>
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">

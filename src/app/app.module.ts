@@ -12,16 +12,20 @@ import { HeaderComponent } from './Components/header/header.component';
 import { AuthComponent } from './Components/auth/auth.component';
 import { AuthService } from './Services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductListComponent } from './Components/product-list/product-list.component';
+import { ProductListComponent } from './Components/product/product-list/product-list.component';
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { ProductCreateComponent } from './Components/product/product-create/product-create.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, AuthComponent, ProductListComponent],
+  declarations: [AppComponent, HeaderComponent, AuthComponent, ProductListComponent, ProductCreateComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     SocialLoginModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {
@@ -39,6 +43,7 @@ import { ProductListComponent } from './Components/product-list/product-list.com
       } as SocialAuthServiceConfig,
     },
     AuthService,
+    authInterceptorProviders
   ],
   bootstrap: [AppComponent],
 })

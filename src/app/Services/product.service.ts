@@ -12,4 +12,8 @@ export class ProductService {
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(`${environment.backendUrl}/api/products`);
   }
+
+  create(data: Partial<Product>) : Observable<Product> {
+    return this.http.post<Product>(`${environment.backendUrl}/api/products` ,data);
+  }
 }
