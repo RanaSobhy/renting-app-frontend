@@ -20,6 +20,27 @@
           <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="card-text">{{ product.description }}</p>
+            <button
+              *ngIf="isAuthenticated && !product.isRented"
+              type="button"
+              class="btn btn-dark btn-sm float-right"
+              (click)="rentProduct(product._id)"
+            >
+              Rent
+            </button>
+            <button
+              *ngIf="
+                isAuthenticated &&
+                product.isRented &&
+                currentUser &&
+                product.ownerId == currentUser._id
+              "
+              type="button"
+              class="btn btn-outline-dark btn-sm float-right"
+              (click)="returnProduct(product._id)"
+            >
+              Rerent
+            </button>
           </div>
         </div>
       </div>
