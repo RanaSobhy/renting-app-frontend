@@ -16,8 +16,11 @@ export class ProductListComponent implements OnInit {
   isAuthenticated = false;
   private userSub: Subscription | null = null;
   public currentUser: User | null | undefined = null;
-  
-  constructor(private productService: ProductService, private authService:AuthService) {}
+
+  constructor(
+    private productService: ProductService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.retrieveProducts();
@@ -32,7 +35,6 @@ export class ProductListComponent implements OnInit {
   retrieveProducts(): void {
     this.productService.getAll().subscribe(
       (data) => {
-        console.log(data);
         this.products = data;
       },
       (error) => {
@@ -41,7 +43,27 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  open():void {
-    
+  rentProduct(id: string): void {
+    console.log(id);
+    this.productService.rent(id, this.currentUser?._id).subscribe(
+      (data) => {
+        this.retrieveProducts();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  returnProduct(id: string): void {
+    console.log(id);
+    this.productService.return(id).subscribe(
+      (data) => {
+        this.retrieveProducts();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }
